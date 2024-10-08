@@ -11,7 +11,7 @@ export function compareHash(data1: string, data2: string) {
 
 export function randString(length: number) {
     let result = '';
-    const char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&*'
+    const char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     const charLength = char.length;
     let counter = 0;
     while (counter < length) {

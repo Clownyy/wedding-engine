@@ -4,8 +4,9 @@ import { AuthService } from './auth.service';
 import { LoginResponseDto } from './login-response.dto';
 import { LoginDto } from './login.dto';
 import { CurrentUser, Public } from './decorate';
+import { SetPasswordDto } from 'src/users/dto/set-password.dto';
 
-@Controller('auth')
+@Controller('/api/auth')
 @Public()
 @ApiTags('auth')
 export class AuthController {
@@ -15,5 +16,11 @@ export class AuthController {
     @ApiOkResponse({ type: LoginResponseDto })
     login(@Body() loginDto: LoginDto) {
         return this.authService.login(loginDto);
+    }
+
+    @Post('/set-password')
+    @ApiOkResponse({ type: LoginResponseDto })
+    setPassword(@Body() setPasswordDto: SetPasswordDto) {
+        return this.authService.setPassword(setPasswordDto);
     }
 }

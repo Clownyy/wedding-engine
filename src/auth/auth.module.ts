@@ -6,9 +6,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
-    imports: [UsersModule],
+    imports: [UsersModule, MailModule],
     providers: [AuthService, PrismaService, UsersService, JwtService],
     controllers: [AuthController],
 })

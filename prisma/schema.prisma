@@ -15,16 +15,34 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement()) @unique
+  id        Int       @id @unique @default(autoincrement())
   login     String    @unique
   email     String    @unique
   password  String
   firstName String?   @map("first_name")
   lastName  String?   @map("last_name")
+  activated Boolean
+  roleUser  String?   @map("role_user")
   resetKey  String?   @map("reset_key")
   resetDate DateTime? @map("reset_date")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
+  guest Guest[]
+
   @@map("user")
 }
+
+model Guest {
+  id          Int    @id @unique @default(autoincrement())
+  guestName   String @map("guest_name")
+  phoneNumber String @map("phone_number")
+  userId      Int    @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("guest")
+}
+
+// npx prisma migrate dev --name "init"
+// npx prisma db seed

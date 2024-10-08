@@ -30,6 +30,12 @@ export class UserEntity implements User {
     language: string;
 
     @ApiProperty()
+    activated: boolean;
+
+    @ApiProperty()
+    roleUser: string;
+
+    @ApiProperty()
     createdAt: Date;
 
     @ApiProperty()

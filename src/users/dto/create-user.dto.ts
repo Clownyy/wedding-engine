@@ -18,4 +18,8 @@ export class CreateUserDto {
     resetKey: string;
 
     resetDate: Date;
+
+    roleUser: string;
+
+    activated: boolean;
 }
