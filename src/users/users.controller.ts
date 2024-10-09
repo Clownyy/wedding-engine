@@ -43,6 +43,7 @@ export class UsersController {
     }
 
     @Get('/account')
+    @ApiOkResponse({type: UserEntity})
     findAccount(@CurrentUser() user) {
         return this.usersService.findOneByLogin(user.sub);
     }

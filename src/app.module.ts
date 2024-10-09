@@ -9,11 +9,12 @@ import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from './mail/mail.module';
 import { ConfigModule } from '@nestjs/config';
+import { GuestModule } from './guest/guest.module';
 
 @Module({
   imports: [PrismaModule, UsersModule, AuthModule, JwtModule, MailModule, ConfigModule.forRoot({
     isGlobal: true,
-  })],
+  }), GuestModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_GUARD,
