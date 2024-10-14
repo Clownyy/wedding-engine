@@ -26,6 +26,17 @@ CREATE TABLE "guest" (
     CONSTRAINT "guest_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "greeting" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "ucapan" TEXT NOT NULL,
+    "attendance_confirmation" BOOLEAN NOT NULL,
+    "user_id" INTEGER NOT NULL,
+
+    CONSTRAINT "greeting_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_id_key" ON "user"("id");
 
@@ -38,5 +49,11 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "guest_id_key" ON "guest"("id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "greeting_id_key" ON "greeting"("id");
+
 -- AddForeignKey
 ALTER TABLE "guest" ADD CONSTRAINT "guest_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "greeting" ADD CONSTRAINT "greeting_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

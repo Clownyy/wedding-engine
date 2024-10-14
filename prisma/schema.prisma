@@ -28,7 +28,8 @@ model User {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
-  guest Guest[]
+  guest     Guest[]
+  greetings Greeting[]
 
   @@map("user")
 }
@@ -42,6 +43,18 @@ model Guest {
   user User @relation(fields: [userId], references: [id])
 
   @@map("guest")
+}
+
+model Greeting {
+  id                     Int     @id @unique @default(autoincrement())
+  name                   String  @map("name")
+  greeting               String  @map("ucapan")
+  attendanceConfirmation Boolean @map("attendance_confirmation")
+  userId                 Int     @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("greeting")
 }
 
 // npx prisma migrate dev --name "init"
