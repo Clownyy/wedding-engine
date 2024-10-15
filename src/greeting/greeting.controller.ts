@@ -3,6 +3,7 @@ import { GreetingService } from './greeting.service';
 import { CreateGreetingDto } from './dto/create-greeting.dto';
 import { UpdateGreetingDto } from './dto/update-greeting.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Public } from 'src/auth/decorate';
 
 @Controller('api')
 @ApiBearerAuth()
@@ -11,6 +12,7 @@ export class GreetingController {
   constructor(private readonly greetingService: GreetingService) { }
 
   @Post('/greetings')
+  @Public()
   create(@Body() createGreetingDto: CreateGreetingDto) {
     return this.greetingService.create(createGreetingDto);
   }
@@ -36,6 +38,7 @@ export class GreetingController {
   }
 
   @Get('/greetings/get-by-user/:userId')
+  @Public()
   findAllByUserId(@Param('userId') userId: number) {
     return this.greetingService.findAllByUserId(+userId);
   }
