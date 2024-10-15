@@ -4,6 +4,7 @@ import { CreateGuestDto } from './dto/create-guest.dto';
 import { UpdateGuestDto } from './dto/update-guest.dto';
 import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { GuestEntity } from './entities/guest.entity';
+import { CreateBulkGuestDto } from './dto/create-bulk-guest.dto';
 
 @Controller('api')
 @ApiBearerAuth()
@@ -15,6 +16,13 @@ export class GuestController {
   @ApiCreatedResponse({ type: GuestEntity })
   create(@Body() createGuestDto: CreateGuestDto) {
     return this.guestService.create(createGuestDto);
+  }
+
+  @Post('/guests/bulk')
+  @ApiCreatedResponse({ example: { count: 0 } })
+  createBulk(@Body() createBulkGuestDto: CreateBulkGuestDto) {
+    console.log(createBulkGuestDto);
+    return this.guestService.createBulk(createBulkGuestDto);
   }
 
   @Get('/guests')
@@ -42,7 +50,7 @@ export class GuestController {
   }
 
   @Get('/guests/get-by-user/:userId')
-  @ApiOkResponse({type: GuestEntity})
+  @ApiOkResponse({ type: GuestEntity })
   findByUser(@Param('userId') userId: number) {
     return this.guestService.findByUser(+userId)
   }

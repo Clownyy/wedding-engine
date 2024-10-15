@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateGuestDto } from './dto/create-guest.dto';
 import { UpdateGuestDto } from './dto/update-guest.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateBulkGuestDto } from './dto/create-bulk-guest.dto';
 
 @Injectable()
 export class GuestService {
@@ -9,6 +10,10 @@ export class GuestService {
 
   create(createGuestDto: CreateGuestDto) {
     return this.prismaService.guest.create({ data: createGuestDto })
+  }
+
+  createBulk(createBulkGuestDto: CreateBulkGuestDto) {
+    return this.prismaService.guest.createMany({data:createBulkGuestDto.requestData});
   }
 
   findAll() {

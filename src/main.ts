@@ -6,9 +6,9 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule, { cors: true });
 
 	const config = new DocumentBuilder()
-		.setTitle('Solvit Engine')
-		.setDescription('Solvit Engine Managed by Cakratech')
-		.setLicense('PT. Kalacakra Technology', 'https://cakra-tech.co.id')
+		.setTitle('Vitation Engine')
+		.setDescription('Vitation Engine Managed by Vitation Team')
+		// .setLicense('Vitation Team', '')
 		.setVersion('BETA')
 		.addSecurity('bearer', {
 			type: 'http',
