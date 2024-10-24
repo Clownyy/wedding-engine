@@ -8,5 +8,5 @@ export class CreateGuestDto {
     phoneNumber: string;
 
     @ApiProperty()
-    userId: number;
+    coupleId: number;
 }

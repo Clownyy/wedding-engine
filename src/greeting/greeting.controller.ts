@@ -37,9 +37,9 @@ export class GreetingController {
     return this.greetingService.remove(+id);
   }
 
-  @Get('/greetings/get-by-user/:userId')
+  @Get('/greetings/get-by-couple/:coupleId')
   @Public()
-  findAllByUserId(@Param('userId') userId: number) {
-    return this.greetingService.findAllByUserId(+userId);
+  findAllByCoupleId(@Param('coupleId') coupleId: number) {
+    return this.greetingService.findAllByCoupleId(+coupleId);
   }
 }

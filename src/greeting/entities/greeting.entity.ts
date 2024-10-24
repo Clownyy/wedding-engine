@@ -15,5 +15,5 @@ export class GreetingEntity implements Greeting {
     attendanceConfirmation: boolean;
 
     @ApiProperty()
-    userId: number;
+    coupleId: number;
 }

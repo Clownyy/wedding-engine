@@ -12,5 +12,5 @@ export class GuestEntity implements Guest{
     phoneNumber: string;
 
     @ApiProperty()
-    userId: number;
+    coupleId: number;
 }

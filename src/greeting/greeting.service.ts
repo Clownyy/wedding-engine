@@ -29,7 +29,7 @@ export class GreetingService {
     return this.prisma.greeting.delete({ where: { id } });
   }
 
-  findAllByUserId(userId: number) {
-    return this.prisma.greeting.findMany({ where: { userId: userId } })
+  findAllByCoupleId(coupleId: number) {
+    return this.prisma.greeting.findMany({ where: { coupleId: coupleId } })
   }
 }

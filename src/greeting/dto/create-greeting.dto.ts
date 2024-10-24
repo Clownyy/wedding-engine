@@ -11,5 +11,5 @@ export class CreateGreetingDto {
     attendanceConfirmation: boolean;
 
     @ApiProperty()
-    userId: number;
+    coupleId: number;
 }

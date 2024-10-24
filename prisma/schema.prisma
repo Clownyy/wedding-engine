@@ -9,9 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -27,9 +27,9 @@ model User {
   resetDate DateTime? @map("reset_date")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
+  coupleId  Int?      @map("couple_id")
 
-  guest     Guest[]
-  greetings Greeting[]
+  couple Couple? @relation(fields: [coupleId], references: [id])
 
   @@map("user")
 }
@@ -38,9 +38,9 @@ model Guest {
   id          Int    @id @unique @default(autoincrement())
   guestName   String @map("guest_name")
   phoneNumber String @map("phone_number")
-  userId      Int    @map("user_id")
+  coupleId    Int    @map("couple_id")
 
-  user User @relation(fields: [userId], references: [id])
+  couple Couple @relation(fields: [coupleId], references: [id])
 
   @@map("guest")
 }
@@ -50,11 +50,25 @@ model Greeting {
   name                   String  @map("name")
   greeting               String  @map("ucapan")
   attendanceConfirmation Boolean @map("attendance_confirmation")
-  userId                 Int     @map("user_id")
+  coupleId               Int     @map("couple_id")
 
-  user User @relation(fields: [userId], references: [id])
+  couple Couple @relation(fields: [coupleId], references: [id])
 
   @@map("greeting")
+}
+
+model Couple {
+  id          Int    @id @unique @default(autoincrement())
+  coupleName1 String @map("couple_name_1")
+  coupleDesc1 String @map("couple_desc_1")
+  coupleName2 String @map("couple_name_2")
+  coupleDesc2 String @map("couple_desc_2")
+
+  user User[]
+  guest Guest[]
+  greeting Greeting[]
+
+  @@map("couple")
 }
 
 // npx prisma migrate dev --name "init"

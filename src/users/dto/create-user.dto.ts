@@ -14,6 +14,9 @@ export class CreateUserDto {
 
     @ApiProperty()
     lastName: string;
+    
+    @ApiProperty()
+    coupleId: number;
 
     resetKey: string;
 

@@ -21,7 +21,6 @@ export class GuestController {
   @Post('/guests/bulk')
   @ApiCreatedResponse({ example: { count: 0 } })
   createBulk(@Body() createBulkGuestDto: CreateBulkGuestDto) {
-    console.log(createBulkGuestDto);
     return this.guestService.createBulk(createBulkGuestDto);
   }
 
@@ -49,9 +48,9 @@ export class GuestController {
     return this.guestService.remove(+id);
   }
 
-  @Get('/guests/get-by-user/:userId')
+  @Get('/guests/get-by-couple/:coupleId')
   @ApiOkResponse({ type: GuestEntity })
-  findByUser(@Param('userId') userId: number) {
-    return this.guestService.findByUser(+userId)
+  findByCouple(@Param('coupleId') coupleId: number) {
+    return this.guestService.findByCouple(+coupleId)
   }
 }

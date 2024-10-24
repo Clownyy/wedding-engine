@@ -35,7 +35,7 @@ export class GuestService {
     return this.prismaService.guest.delete({ where: { id } });
   }
 
-  findByUser(userId: number) {
-    return this.prismaService.guest.findMany({ where: { userId: userId } })
+  findByCouple(coupleId: number) {
+    return this.prismaService.guest.findMany({ where: { coupleId: coupleId } })
   }
 }

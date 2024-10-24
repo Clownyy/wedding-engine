@@ -40,4 +40,7 @@ export class UserEntity implements User {
 
     @ApiProperty()
     updatedAt: Date;
+    
+    @ApiProperty()
+    coupleId: number;
 }
